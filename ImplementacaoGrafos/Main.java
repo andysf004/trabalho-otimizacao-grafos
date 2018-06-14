@@ -9,7 +9,7 @@ public class Main {
 		FileReader arquivo = new FileReader("Grafos.txt");
 		BufferedReader lerArquivo = new BufferedReader(arquivo);
 		
-		Grafo grafos = new Grafo(lerArquivo.readLine());
+		Grafo grafos = new Grafo(lerArquivo.readLine());//lendo uma linha do arquivo e enviando para classe Grafos
 		MatrizAdjacencia matriz = new  MatrizAdjacencia();
 		
 		matriz.lerGrafo(grafos);
@@ -19,6 +19,7 @@ public class Main {
 				u = lerArquivo.read();
 			}
 		}*/
+		//fechando o arquivo
 		arquivo.close();
 		lerArquivo.close();
 		}catch(IOException ex){
