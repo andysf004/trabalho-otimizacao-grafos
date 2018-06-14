@@ -11,7 +11,7 @@ public class Grafo {
 	
 	private void obterDimensaoMatriz(String arestas) {
 		int qntArestas = 0;
-		for(int i = 1; i<=arestas.length(); i++)
+		for(int i = 0; i<arestas.length(); i++)
 			if(arestas.charAt(i) == '{') {
 				qntArestas++;
 				n = qntArestas;
