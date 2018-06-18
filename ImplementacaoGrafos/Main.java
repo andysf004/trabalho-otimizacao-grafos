@@ -9,16 +9,17 @@ public class Main {
 		FileReader arquivo = new FileReader("Grafos.txt");
 		BufferedReader lerArquivo = new BufferedReader(arquivo);
 		
-		Grafo grafo = new Grafo(lerArquivo.readLine());//lendo uma linha do arquivo e enviando para classe Grafos
+		Grafo grafo = new Grafo(lerArquivo);
 		MatrizAdjacencia matriz = new  MatrizAdjacencia();
 		
-		matriz.lerGrafo(grafo);//mota a matriz adjacencia
+		matriz.lerGrafo(grafo);//monta a matriz adjacencia
 		
 		//fechando o arquivo
 		arquivo.close();
 		lerArquivo.close();
+		
 		//imprime a matriz adjacencia
-		System.out.println(grafo.formataSaidaDaMatriz());
+		System.out.println("Matriz Adjacência \n" + grafo.formataSaidaDaMatriz());
 		
 		}catch(IOException ex){
 			ex.printStackTrace();

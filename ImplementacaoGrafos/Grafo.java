@@ -1,24 +1,50 @@
+import java.io.BufferedReader;
+import java.io.IOException;
 
 public class Grafo {
+	BufferedReader lerArquivo;
 	String arestas;
-	int n, m;
+	int n; //qnt de vertices do grafo
+	int m; // qnt de arestas do grafo
 	int[][] M;
-	public Grafo(String arestas) {
-		this.arestas = arestas;
-		obterDimensaoMatriz(this.arestas);
+	public Grafo(BufferedReader lerArquivo) {
+		this.lerArquivo = lerArquivo;
+		obterDimensaoMatriz(this.lerArquivo);
 		M = new int[n][n];
 	}
 	
-	private void obterDimensaoMatriz(String arestas) {
+	private void obterDimensaoMatriz(BufferedReader lerArquivo) {
 		int qntArestas = 0;
-		//de acordo com a quantidade de chaves abertas no arquivo, se tem a quantidade de arestas do grafo que serão as dimensões da matriz
-		for(int i = 0; i < arestas.length(); i++)
-			//conta a quantidade de digitos numericos no arquivo
-			if(Character.isDigit(arestas.charAt(i))) {
-				qntArestas++;
+		int qntVertices = 0;
+		
+		try {
+			String linnhaArquivo = lerArquivo.readLine();//lendo a primeira linha do arquivo
+			//Contando a quantidade de vertices no arquivo
+			for(int i = 0; i < linnhaArquivo.length(); i++) {
+				if(Character.isDigit(linnhaArquivo.charAt(i))) {//se for digito entao e o vertice logo incrementa o contador de vertices
+					qntVertices++;
+				}
 			}
-		n = qntArestas/2;//divide a quantidade de digitos numericos no arquivo para pegar quantidade de arestas do grafo
+			n = qntVertices;
+			System.out.println(linnhaArquivo);
+			
+			linnhaArquivo = lerArquivo.readLine(); //lendo a proxima linha do arquivo 
+			System.out.println(linnhaArquivo + "\n");
+			
+			//Contando a quantidade de arestas no arquivo
+			for(int i = 0; i < linnhaArquivo.length(); i++) {
+				if(Character.isDigit(linnhaArquivo.charAt(i))) {//se for digito entao e a aresta, logo incrementa a contador de arestas
+					qntArestas++;
+				}
+			}
+			m = qntArestas/2;//divide a quantidade de digitos numericos no arquivo para pegar quantidade de arestas do grafo
+			arestas = linnhaArquivo; //setando a variavel aresta que é usado na classe MatrizAdjacencia
+		}
+		catch(IOException ex) {
+			ex.getStackTrace();
+		}
 	}
+	
 	
 	public String formataSaidaDaMatriz(){
 		String saida=""; // Cria e inicializa uma String	
