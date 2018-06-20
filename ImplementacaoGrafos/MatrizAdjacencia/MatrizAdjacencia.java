@@ -1,3 +1,4 @@
+package MatrizAdjacencia;
 
 public class MatrizAdjacencia {
 	
