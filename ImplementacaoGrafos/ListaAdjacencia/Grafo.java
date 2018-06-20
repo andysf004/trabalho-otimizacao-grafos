@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 public class Grafo {
 	BufferedReader lerArquivo;
 	int n, m;
-	NoAresta L[];
+	NoAresta[] L;
 	String arestas;
 
 	public Grafo(BufferedReader lerArquivo){

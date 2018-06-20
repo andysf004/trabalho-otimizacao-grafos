@@ -12,28 +12,30 @@ public class ListaAdjacencia {
 				j = j+2; 				
 				v = Character.getNumericValue(G.arestas.charAt(j)); 
 				
-				insere(G.L[u-1], v);
-				insere(G.L[v-1], u);
+				insere(G, u-1, v);
+				insere(G,v-1, u);
 				
 			}
 		}
 	}
 	  
-	protected void insere(NoAresta L, int vizinho){
+	protected void insere(Grafo G, int indice, int vizinho){
+	//	L = new NoAresta();
+		
 		NoAresta novo = new NoAresta();
 		novo.vizinho = vizinho;
-		novo.prox = L;
-		L = novo;
+		novo.prox = G.L[indice];
+		G.L[indice] = novo;
 		
-		//System.out.println("Vizinho = " + novo.vizinho + "\n" + "Próximo = " + novo.prox + "\n" + "L = " + L);
+		//System.out.println("L = " + G.L[indice]+"\nVizinho = " + novo.vizinho + "\n" + "Próximo = " + novo.prox + "\n");
 		
 	}
 	
 	protected String formataSaidaLista(Grafo G) {
 		String saida=""; // Cria e inicializa uma String
 		
-		for(int i = 0; i < G.L.length; i++){ //for para percorrer as linhas da matriz
-			saida = saida +G.L[i] + " ";
+		for(int i = 0; i < G.L.length; i++){ 
+			saida = saida +G.L[i].vizinho + " ";
 			saida = saida + "\n"; // Guarda uma quebra de linha na String
 		}
 		return saida; //retorna a String 
