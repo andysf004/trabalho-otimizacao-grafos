@@ -1,7 +1,6 @@
 package ListaAdjacencia;
 
-public class ListaAdjacencia {
-	   
+public class ListaAdjacencia {   
 	protected void lerGrafo(Grafo G){
 		int u,v;
 	   	
@@ -14,31 +13,38 @@ public class ListaAdjacencia {
 				
 				insere(G, u-1, v);
 				insere(G,v-1, u);
-				
 			}
 		}
 	}
 	  
 	protected void insere(Grafo G, int indice, int vizinho){
-	//	L = new NoAresta();
-		
 		NoAresta novo = new NoAresta();
 		novo.vizinho = vizinho;
 		novo.prox = G.L[indice];
 		G.L[indice] = novo;
-		
-		//System.out.println("L = " + G.L[indice]+"\nVizinho = " + novo.vizinho + "\n" + "Próximo = " + novo.prox + "\n");
-		
 	}
 	
 	protected String formataSaidaLista(Grafo G) {
 		String saida=""; // Cria e inicializa uma String
+		int vertice = 0;
+
+		for(int i = 0; i < G.L.length; i++){//intera pelo array de vizinhos
+			boolean existeVizinho = true;
+			NoAresta NoAtual = G.L[i];
+			vertice = i+1;
+			saida = saida + vertice + " --> ";
 		
-		for(int i = 0; i < G.L.length; i++){ 
-			saida = saida +G.L[i].vizinho + " ";
-			saida = saida + "\n"; // Guarda uma quebra de linha na String
+			while(existeVizinho) {
+				saida = saida + NoAtual.vizinho + " --> ";
+
+				if(NoAtual.prox == null) {
+					existeVizinho = false;
+					saida = saida + NoAtual.prox + "\n"; 
+				}
+			NoAtual = NoAtual.prox;
+			}
 		}
-		return saida; //retorna a String 
+		return saida; //retorna a String formatada
 	}
 	   	
 }
